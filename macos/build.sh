@@ -16,16 +16,14 @@ sed -e 's|DEFINES += -DUSE_HW_AES -DUSE_HW_SHA1 -DUSE_HW_SHA2||g' \
     -e 's|EXTRA_SRCS += aes-armv8.c sha1-armv8.c sha256-armv8.c||g' \
     nss/lib/freebl/Makefile
 
-cat nss/lib/freebl/Makefile
-#
-#cd nss
-#USE_64=1 BUILD_OPT=1 NSS_DISABLE_GTESTS=1 NSS_DISABLE_NSPR_TESTS=1 make nss_build_all
-#cd ..
-#mv dist/"$(cat dist/latest)" dist/out
-#mkdir -p ../dist
-#cp -L dist/out/bin/certutil ../dist/
-#cp -L dist/out/lib/*.dylib ../dist/
-#rm -rf ./*
-#
-#cd ..
-#rm -rf src
+cd nss
+USE_64=1 BUILD_OPT=1 NSS_DISABLE_GTESTS=1 NSS_DISABLE_NSPR_TESTS=1 NS_USE_GCC=1 make nss_build_all
+cd ..
+mv dist/"$(cat dist/latest)" dist/out
+mkdir -p ../dist
+cp -L dist/out/bin/certutil ../dist/
+cp -L dist/out/lib/*.dylib ../dist/
+rm -rf ./*
+
+cd ..
+rm -rf src
