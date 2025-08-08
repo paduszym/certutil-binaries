@@ -1,0 +1,36 @@
+name: CI/CD
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: {}
+jobs:
+  macos-x64:
+    name: MacOS x64
+    runs-on: macos-15-large
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build
+        run: |
+          cd macos
+          sh build.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: macos/dist
+  macos-aarch64:
+    name: MacOS arm64
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build
+        run: |
+          cd macos
+          sh build.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: macos/dist
