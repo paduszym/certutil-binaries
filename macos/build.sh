@@ -17,7 +17,7 @@ echo 'DIRS = certutil $(LIB_SRCDIRS)' >> nss/cmd/manifest.mn
 #    nss/lib/freebl/Makefile
 
 cd nss
-USE_64=1 BUILD_OPT=1 NSS_DISABLE_GTESTS=1 NSS_DISABLE_NSPR_TESTS=1 NS_USE_GCC=1 make nss_build_all
+USE_64=1 BUILD_OPT=1 NSS_DISABLE_GTESTS=1 NSS_DISABLE_NSPR_TESTS=1 make nss_build_all
 cd ..
 mv dist/"$(cat dist/latest)" dist/out
 mkdir -p ../dist
