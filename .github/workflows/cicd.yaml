@@ -1,7 +1,5 @@
 name: CI/CD
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch: {}
 jobs:
   macos-aarch64:
@@ -17,5 +15,27 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: certutil_macos-aarch64
           path: macos/dist
+  windows-x64:
+    name: Windows x64
+    runs-on: windows-2022
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: mingw-w64-x86_64-toolchain make nsinstall
+      - name: Build
+        shell: msys2 {0}
+        run: |
+          cd windows
+          sh build.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: certutil_windows-x64
+          path: windows/dist
