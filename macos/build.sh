@@ -24,7 +24,8 @@ mv dist/"$(cat dist/latest)" dist/out
 mkdir -p ../dist
 cp -L dist/out/bin/certutil ../dist/
 cp -L dist/out/lib/*.dylib ../dist/
-strip ../dist/*
+strip ../dist/certutil
+strip -x ../dist/*.dylib
 
 cd ..
 rm -rf src
