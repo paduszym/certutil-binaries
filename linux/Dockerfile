@@ -20,6 +20,7 @@ RUN cd nss && \
     mkdir /dist && \
     cp -L dist/out/bin/certutil /dist && \
     cp -L dist/out/lib/*.so /dist && \
+    strip /dist/* && \
     rm -rf *
 RUN mkdir testdb && \
     LD_LIBRARY_PATH=/dist /dist/certutil -N -d sql:./testdb --empty-password && \

@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 
-set -e
+set -ex
 
+rm -rf dist
 rm -rf src
 mkdir -p src
 cd src
@@ -23,7 +24,7 @@ mv dist/"$(cat dist/latest)" dist/out
 mkdir -p ../dist
 cp -L dist/out/bin/certutil ../dist/
 cp -L dist/out/lib/*.dylib ../dist/
-rm -rf ./*
+strip ../dist/*
 
 cd ..
 rm -rf src

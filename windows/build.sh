@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 
-set -e
+set -ex
 
+rm -rf dist
 rm -rf src
 mkdir -p src
 cd src
@@ -28,7 +29,8 @@ mv dist/"$(cat dist/latest)" dist/out
 mkdir -p ../dist
 cp -L dist/out/bin/certutil.exe ../dist/
 cp -L dist/out/lib/*.dll ../dist/
-rm -rf ./*
+chmod 755 ../dist/*
+strip ../dist/*
 
 cd ..
 rm -rf src
