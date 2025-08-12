@@ -1,3 +1,3 @@
-# `certutil` &ndash; precompiled binaries
+# Mozilla NSS's `certutil` &ndash; precompiled binaries
 
 See [Releases page](https://github.com/paduszym/certutil-binaries/releases).
